@@ -47,6 +47,12 @@ void matrixMult(Matrix *A, Matrix *B, Matrix *C)
     }
 }
 
+void destroyMatrix(Matrix *M)
+{
+  free(M->data);
+  free(M);
+}
+
 Matrix *createMatrix(int rows, int cols){
   int matrix_size = rows * cols;
   Matrix *m = (Matrix*)malloc(sizeof(Matrix));
@@ -92,5 +98,8 @@ int main(){
   Matrix *C = createMatrix(3, 3);
   matrixMult(A, B, C);
   printMatrix(C);
+  destroyMatrix(A);
+  destroyMatrix(B);
+  destroyMatrix(C);
   return 0;
 }
